@@ -4,8 +4,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.itcast.mybatis.mapper.OrdersMapperCustom">
+	<!-- 订单查询关联用户的查询 -->
+	<resultMap type="cn.itcast.mybatis.po.Orders" id="OrderUserResultMap">
+		<!-- 配置映射的订单信息 -->
+		<!-- id:指定查询列种的唯一标识，订单信息的中的唯一标识，如果有多个列组成唯一标识，配置多个id -->
+		<id column="id" property="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="number" property="number"/>
+		<result column="createtime" property="createtime"/>
+		<result column="note" property="note"/>
+		
+		<!-- 配置映射的关联用户信息 -->
+		<!-- association:用于映射关联查询单个对象的信息
+			property:要将关联查询的用户信息映射到Orders中的那个属性
+		 -->
+		<association property="user" javaType="cn.itcast.mybatis.po.User">
+			<!-- 关联查询用户的唯一标识
+				column：指定唯一标识用户信息的列
+				javaType:映射到user的那个属性
+			 -->
+			<id column="user_id" property="id"/>
+			<result column="username" property="username"/>
+			<result column="sex" property="sex"/>
+			<result column="address" property="address"/>
+		</association>
+	</resultMap>
+
 	<!-- 查询订单关联查询订单用户 -->
 	<select id="findOrdersUser" resultType="cn.itcast.mybatis.po.OrdersCustom">
+		SELECT
+		orders.*,
+		USER.username,
+		USER.sex,
+		USER.address
+		FROM
+		orders,
+		USER
+		WHERE orders.user_id = user.id
+	</select>
+	
+	<select id="findOrdersUserResultMap" resultMap="OrderUserResultMap">
 		SELECT
 		orders.*,
 		USER.username,

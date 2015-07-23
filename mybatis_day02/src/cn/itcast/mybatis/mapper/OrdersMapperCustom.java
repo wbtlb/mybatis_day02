@@ -2,9 +2,9 @@ package cn.itcast.mybatis.mapper;
 
 import java.util.List;
 
-import cn.itcast.mybatis.po.Orders;
+import org.apache.logging.log4j.core.config.Order;
+
 import cn.itcast.mybatis.po.OrdersCustom;
-import cn.itcast.mybatis.po.User;
 
 /**
  * 
@@ -19,5 +19,7 @@ public interface OrdersMapperCustom {
 	
 	//
 	public List<OrdersCustom> findOrdersUser()throws Exception;
+	
+	public List<Order> findOrdersUserResultMap() throws Exception;
 	
 }

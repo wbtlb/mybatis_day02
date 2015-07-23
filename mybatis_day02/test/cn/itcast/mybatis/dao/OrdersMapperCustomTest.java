@@ -7,6 +7,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.logging.log4j.core.config.Order;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,13 +28,26 @@ public class OrdersMapperCustomTest {
 		 sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
-	@Test
+	//@Test
 	public void testFindOrdersUser() throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		
 		OrdersMapperCustom ordersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
 		
 		List<OrdersCustom> list = ordersMapperCustom.findOrdersUser();
+		
+		System.out.println(list);
+		
+		sqlSession.close();
+	}
+	
+	@Test
+	public void testFindOrdersUserResultMap() throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		OrdersMapperCustom ordersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
+		
+		List<Order> list = ordersMapperCustom.findOrdersUserResultMap();
 		
 		System.out.println(list);
 		
