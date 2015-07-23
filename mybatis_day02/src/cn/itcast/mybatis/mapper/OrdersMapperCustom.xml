@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.itcast.mybatis.mapper.OrdersMapperCustom">
+	<!-- 查询订单关联查询订单用户 -->
+	<select id="findOrdersUser" resultType="cn.itcast.mybatis.po.OrdersCustom">
+		SELECT
+		orders.*,
+		USER.username,
+		USER.sex,
+		USER.address
+		FROM
+		orders,
+		USER
+		WHERE orders.user_id = user.id
+	</select>
+</mapper>
+
+
+
+
+
+
+
