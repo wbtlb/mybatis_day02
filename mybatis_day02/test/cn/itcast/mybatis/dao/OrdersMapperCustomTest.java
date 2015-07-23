@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cn.itcast.mybatis.mapper.OrdersMapperCustom;
+import cn.itcast.mybatis.po.Orders;
 import cn.itcast.mybatis.po.OrdersCustom;
 
 public class OrdersMapperCustomTest {
@@ -41,13 +42,26 @@ public class OrdersMapperCustomTest {
 		sqlSession.close();
 	}
 	
-	@Test
+	//@Test
 	public void testFindOrdersUserResultMap() throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		
 		OrdersMapperCustom ordersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
 		
-		List<Order> list = ordersMapperCustom.findOrdersUserResultMap();
+		List<Orders> list = ordersMapperCustom.findOrdersUserResultMap();
+		
+		System.out.println(list);
+		
+		sqlSession.close();
+	}
+	
+	@Test
+	public void findOrdersAndOrdersDetailResultMap() throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		OrdersMapperCustom ordersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
+		
+		List<Orders> list = ordersMapperCustom.findOrdersAndOrderDetailResultMap();
 		
 		System.out.println(list);
 		
