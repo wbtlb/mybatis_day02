@@ -68,7 +68,7 @@ public class OrdersMapperCustomTest {
 		sqlSession.close();
 	}
 	
-	@Test
+	//@Test
 	public void  UserAndItemsResultMap() throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		
@@ -79,6 +79,25 @@ public class OrdersMapperCustomTest {
 		System.out.println(list);
 		
 		sqlSession.close();
+	}
+	
+	//查询订单关联用户信息  延迟加载
+	@Test
+	public void  findOrderUserLazyLoading() throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		OrdersMapperCustom ordersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
+		
+		//查询订单信息(单表)
+		List<Orders> list = ordersMapperCustom.findOrderUserLazyLoading();
+		
+		//遍历上边的订单列表
+		for(Orders orders:list)
+		{
+			User user = orders.getUser();
+			System.out.println(user);
+		}//id相同 有一级缓存
+		
 	}
 
 }
