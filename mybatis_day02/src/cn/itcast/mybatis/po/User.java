@@ -1,6 +1,7 @@
 package cn.itcast.mybatis.po;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
 	private int id;
@@ -8,6 +9,16 @@ public class User {
 	private String sex;
 	private Date birthday;
 	private String address;
+	
+	private List<Orders> orderslist;
+	
+	
+	public List<Orders> getOrderslist() {
+		return orderslist;
+	}
+	public void setOrderslist(List<Orders> orderslist) {
+		this.orderslist = orderslist;
+	}
 	public int getId() {
 		return id;
 	}
