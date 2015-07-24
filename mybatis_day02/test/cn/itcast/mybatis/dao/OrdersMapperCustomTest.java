@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cn.itcast.mybatis.mapper.OrdersMapperCustom;
+import cn.itcast.mybatis.mapper.UserMapper;
 import cn.itcast.mybatis.po.Orders;
 import cn.itcast.mybatis.po.OrdersCustom;
 import cn.itcast.mybatis.po.User;
@@ -82,7 +83,7 @@ public class OrdersMapperCustomTest {
 	}
 	
 	//查询订单关联用户信息  延迟加载
-	@Test
+	//@Test
 	public void  findOrderUserLazyLoading() throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		
@@ -99,5 +100,39 @@ public class OrdersMapperCustomTest {
 		}//id相同 有一级缓存
 		
 	}
+	
+	//一级缓存测试
+	@Test
+	public void testCache1() throws Exception
+	{
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		
+		//第一次发起请求，查询id为1的用户
+		User user1 = userMapper.findUserById(1);
+		System.out.println(user1);
+		
+		//如果sqlSession去执行commit操作(执行插入 更新 删除)，清空sqlSession中的一级缓存，这样的目的为了让缓存中存储的最新的信息避免脏数据
+		
+		//创建更新对象
+		user1.setUsername("波波");
+		userMapper.updateUser(user1);
+		sqlSession.commit();
+		
+		//第二次发起请求，查询id为1的用户
+		User user2 = userMapper.findUserById(1);
+		System.out.println(user2);
+		
+		sqlSession.close();
+	}
 
 }
+
+
+
+
+
+
+
+
+
