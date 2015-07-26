@@ -16,5 +16,7 @@
 	<classpathentry kind="lib" path="C:/Users/lenovo/Desktop/mybaits_day01/res/jar包/mybatis-3.2.7/lib/slf4j-log4j12-1.7.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/lenovo/Desktop/mybaits_day01/res/jar包/mybatis-3.2.7/mybatis-3.2.7.jar" sourcepath="C:/Users/lenovo/Desktop/mybaits_day01/res/jar包/mybatis-3.2.7-source.zip"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/lenovo/Desktop/mybatis_day02/res/jar包/ehcache/ehcache2.6.5/ehcache-core-2.6.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lenovo/Desktop/mybatis_day02/res/jar包/ehcache/ehcache2.6.5/mybatis-ehcache-1.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

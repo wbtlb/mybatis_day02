@@ -140,14 +140,14 @@ public class OrdersMapperCustomTest {
 		// 这里执行关闭操作，将sqlSession中的数据写到二级缓存中
 		sqlSession1.close();
 
-		//使用sqlSession3执行commit()操作
-		UserMapper userMapper3 = sqlSession3.getMapper(UserMapper.class);
-		User user3 = userMapper3.findUserById(1);
-		user3.setUsername("俞敏洪");
-		userMapper3.updateUser(user3);
-		//执行提交 清空UserMapper下边的二级缓存
-		sqlSession3.commit();
-		sqlSession3.close();
+//		//使用sqlSession3执行commit()操作
+//		UserMapper userMapper3 = sqlSession3.getMapper(UserMapper.class);
+//		User user3 = userMapper3.findUserById(1);
+//		user3.setUsername("俞敏洪");
+//		userMapper3.updateUser(user3);
+//		//执行提交 清空UserMapper下边的二级缓存
+//		sqlSession3.commit();
+//		sqlSession3.close();
 		
 		UserMapper userMapper2 = sqlSession2.getMapper(UserMapper.class);
 		User user2 = userMapper2.findUserById(1);
