@@ -4,6 +4,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.itcast.mybatis.mapper.UserMapper">
+
+	<!-- 开启本mapper的namespace下的二级缓存 -->
+	<cache />
+
+
 	<!-- 定义sql片段 经验:是基于单表定义sql片段，这样sql片段可重用性高 sql片段中不要包含where -->
 	<sql id="query_user_where">
 		<if test="userCustom!=null">
